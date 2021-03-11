@@ -1,5 +1,117 @@
+//Generator Function
+var passGen = function() {
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+
+//Usuable character arrays
+
+var lowerCasedCharacters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z'
+];
+
+var upperCasedCharacters = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z'
+];
+
+var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+var specialCharacters = [
+  '@',
+  '%',
+  '+',
+  '\\',
+  '/',
+  "'",
+  '!',
+  '#',
+  '$',
+  '^',
+  '?',
+  ':',
+  ',',
+  ')',
+  '(',
+  '}',
+  '{',
+  ']',
+  '[',
+  '~',
+  '-',
+  '_',
+  '.'
+];
+
+// Combining the availble password arrays
+var passChars =lowerCasedCharacters.concat(upperCasedCharacters, numericCharacters, specialCharacters);
+
+// Window prompt for password length
+var passLength = window.prompt("Enter Desired Password Length: Choose between 8-100");
+
+if (passLength> 7 && passLength < 101) {
+
+  generatePassword();
+}
+
+else {
+  window.alert("Password must be between 8 and 100 characters in length");
+  
+  //after alert, starts the length request again
+  passGen();
+}
+
+
+
 
 // Write password to the #password input
 function writePassword() {
@@ -12,3 +124,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+};
+passGen();
