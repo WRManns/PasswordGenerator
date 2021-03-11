@@ -98,13 +98,18 @@ var passChars =lowerCasedCharacters.concat(upperCasedCharacters, numericCharacte
 // Window prompt for password length
 var passLength = window.prompt("Enter Desired Password Length: Choose between 8-100");
 
-if (passLength> 7 && passLength < 101) {
-
-  generatePassword();
+if (passLength> 7 && passLength < 27) {
+  function generatePassword() {
+    for (var i = 0; i < passLength; i++) {
+      //Generates random charachters from array(s)
+      const passGenned = passChars[Math.floor(Math.random() * passChars.length)];
+      console.log(passGenned);
+    }
+  }
 }
 
 else {
-  window.alert("Password must be between 8 and 100 characters in length");
+  window.alert("Password must be between 8 and 26 characters in length");
   
   //after alert, starts the length request again
   passGen();
