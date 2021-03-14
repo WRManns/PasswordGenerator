@@ -91,29 +91,70 @@ var specialCharacters = [
   '_',
   '.'
 ];
+//Empty Arrays for password options
+var passCharArr = [];
+var passWordArr = [];
+var charCatch;
 
-// Combining the availble password arrays
-var passChars =lowerCasedCharacters.concat(upperCasedCharacters, numericCharacters, specialCharacters);
-
-// Window prompt for password length
-var passLength = window.prompt("Enter Desired Password Length: Choose between 8-100");
-
-if (passLength> 7 && passLength < 27) {
-  function generatePassword() {
-    for (var i = 0; i < passLength; i++) {
-      //Generates random charachters from array(s)
-      const passGenned = passChars[Math.floor(Math.random() * passChars.length)];
-      console.log(passGenned);
-    }
-  }
-}
-
-else {
-  window.alert("Password must be between 8 and 26 characters in length");
-  
-  //after alert, starts the length request again
+// Window prompts for password preferences
+var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 8-100"));
+  //Checking for password to be proper length
+  if (passLength< 8 || passLength > 100) {
+  window.alert("Password must contain between 8 and 100 characters.");
   passGen();
+  };
+
+  var upperChars = confirm("Would you like to include Upper-Cased Characters in Password?");
+  var passNums = confirm("Would you like to include Numbers in Password?");
+  var specChars= confirm("Would you like to include Special Characters in Password?");
+  
+  //Checking against the window Confirms and concatenating arrays to correspond with User's choices
+  if (upperChars && passNums && specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(upperCasedCharacters, numericCharacters, specialCharacters);
+
+  } else if (!upperChars && passNums && specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(numericCharacters, specialCharacters);
+
+  } else if (upperChars && !passNums && specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(upperCasedCharacters, specialCharacters);
+
+  } else if (upperChars && passNums && !specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(upperCasedCharacters, numericCharacters);
+
+  } else if (!upperChars && !passNums && specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(specialCharacters);
+
+  } else if (!upperChars && passNums && !specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(numericCharacters);
+
+  } else if (upperChars && !passNums && !specChars == true) {
+    passCharArr = lowerCasedCharacters.concat(upperCasedCharacters);
+
+    //Default is a password made of only lowerCasedCharacter array
+  } else {
+    passCharArr = lowerCasedCharacters;
+  }
+
+function generatePassword() {
+     for (var i = 1; i < passLength; i++) {
+      function randomChar(passCharArr) {
+        charCatch = passCharArr[Math.floor(Math.random()*passCharArr.length)]
+        
+      }
+      passWordArr.push(charCatch)
+      console.log(randomChar(passCharArr));
+      console.log(passWordArr);
+    }
+  
 }
+
+
+
+
+
+  
+
+    
 
 
 
