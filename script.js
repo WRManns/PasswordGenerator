@@ -1,5 +1,5 @@
 //Generator Function
-var passGen = function() {
+
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -94,13 +94,13 @@ var specialCharacters = [
 //Empty Arrays for password options
 var passCharArr = []
 
-
+var passGen = function() {
 // Window prompts for password preferences
 var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 8-100"));
   //Checking for password to be proper length
   if (passLength< 8 || passLength > 100) {
   window.alert("Password must contain between 8 and 100 characters.");
-  passGen();
+  return;
   };
 
   var upperChars = confirm("Would you like to include Upper-Cased Characters in Password?");
@@ -133,12 +133,15 @@ var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 
   } else {
     passCharArr = lowerCasedCharacters;
   }
+  return passLength
+}
 
 function generatePassword() {
+  var length = passGen();
   
   var passWordArr = []
   var charCatch;
-     for (var i = 0; i < passLength; i++) {
+     for (var i = 0; i < length; i++) {
       function randomChar(passCharArr) {
         charCatch = passCharArr[Math.floor(Math.random()*passCharArr.length)]
         passWordArr.push(charCatch)
@@ -147,6 +150,7 @@ function generatePassword() {
       sessionStorage.setItem("password", passWordArr.join(''));
       console.log(passWordArr);
     }
+    return passWordArr.join('')
   
   }
 
@@ -163,9 +167,9 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  generatePassword();
+  var password = generatePassword();
 
-  var password = sessionStorage.getItem('password');
+  //var password = sessionStorage.getItem('password');
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -174,6 +178,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-};
-passGen();
