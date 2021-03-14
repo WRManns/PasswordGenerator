@@ -91,7 +91,7 @@ var specialCharacters = [
   '_',
   '.'
 ];
-//Empty Arrays for password options
+//Empty Array for password options
 var passCharArr = []
 
 var passGen = function() {
@@ -103,35 +103,51 @@ var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 
   return;
   };
 
+  //Prompts for User to choose characters to be used in password
+  var lowerChars = confirm("Would you like to include Lower-Cased Characters in Password?");
   var upperChars = confirm("Would you like to include Upper-Cased Characters in Password?");
   var passNums = confirm("Would you like to include Numbers in Password?");
   var specChars= confirm("Would you like to include Special Characters in Password?");
   
   //Checking against the window Confirms and concatenating arrays to correspond with User's choices
-  if (upperChars && passNums && specChars == true) {
+  
+  if (lowerChars && upperChars && passNums && specChars == true) {
     passCharArr = lowerCasedCharacters.concat(upperCasedCharacters, numericCharacters, specialCharacters);
 
-  } else if (!upperChars && passNums && specChars == true) {
+  } else if (lowerChars && !upperChars && passNums && specChars == true) {
     passCharArr = lowerCasedCharacters.concat(numericCharacters, specialCharacters);
 
-  } else if (upperChars && !passNums && specChars == true) {
+  } else if (lowerChars && upperChars && !passNums && specChars == true) {
     passCharArr = lowerCasedCharacters.concat(upperCasedCharacters, specialCharacters);
 
-  } else if (upperChars && passNums && !specChars == true) {
+  } else if (lowerChars && upperChars && passNums && !specChars == true) {
     passCharArr = lowerCasedCharacters.concat(upperCasedCharacters, numericCharacters);
 
-  } else if (!upperChars && !passNums && specChars == true) {
-    passCharArr = lowerCasedCharacters.concat(specialCharacters);
+  } else if (!lowerChars && !upperChars && passNums && specChars == true) {
+    passCharArr = numericCharacters.concat(specialCharacters);
 
-  } else if (!upperChars && passNums && !specChars == true) {
-    passCharArr = lowerCasedCharacters.concat(numericCharacters);
+  } else if(!lowerChars && upperChars && !passNums && specChars == true) {
+    passCharArr = upperCasedCharacters.concat(specialCharacters);
 
-  } else if (upperChars && !passNums && !specChars == true) {
-    passCharArr = lowerCasedCharacters.concat(upperCasedCharacters);
+  } else if (!lowerChars && upperChars && passNums && !specChars == true) {
+    passCharArr = upperCasedCharacters.concat(specialCharacters);
 
-    //Default is a password made of only lowerCasedCharacter array
-  } else {
+  } else if (lowerChars && !upperChars && !passNums && !specChars == true) {
     passCharArr = lowerCasedCharacters;
+
+  } else if (!lowerChars && upperChars && !passNums && !specChars == true) {
+    passCharArr = upperCasedCharacters;
+
+  } else if (!lowerChars && !upperChars && passNums && !specChars == true) {
+    passCharArr = numericCharacters;
+
+  } else if (!lowerChars && !upperChars && !passNums && specChars == true) {
+    passCharArr = specialCharacters;
+
+    //Alert to user if no character choices were made
+  } else {
+      window.alert("Password must contain some varient of characters")
+      return;
   }
   return passLength
 }
