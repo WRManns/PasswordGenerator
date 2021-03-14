@@ -92,9 +92,10 @@ var specialCharacters = [
   '.'
 ];
 //Empty Arrays for password options
-var passCharArr = [];
-var passWordArr = [];
-var charCatch;
+var passCharArr = []
+var passWordArr = []
+var charCatch = ''
+
 
 // Window prompts for password preferences
 var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 8-100"));
@@ -136,17 +137,16 @@ var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 
   }
 
 function generatePassword() {
-     for (var i = 1; i < passLength; i++) {
+     for (var i = 0; i < passLength; i++) {
       function randomChar(passCharArr) {
         charCatch = passCharArr[Math.floor(Math.random()*passCharArr.length)]
-        
+        passWordArr.push(charCatch)
       }
-      passWordArr.push(charCatch)
       console.log(randomChar(passCharArr));
       console.log(passWordArr);
     }
   
-}
+  }
 
 
 
@@ -161,7 +161,7 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(passWordArr);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
