@@ -93,8 +93,6 @@ var specialCharacters = [
 ];
 //Empty Arrays for password options
 var passCharArr = []
-var passWordArr = []
-var charCatch = ''
 
 
 // Window prompts for password preferences
@@ -137,12 +135,16 @@ var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 
   }
 
 function generatePassword() {
+  
+  var passWordArr = []
+  var charCatch;
      for (var i = 0; i < passLength; i++) {
       function randomChar(passCharArr) {
         charCatch = passCharArr[Math.floor(Math.random()*passCharArr.length)]
         passWordArr.push(charCatch)
       }
-      console.log(randomChar(passCharArr));
+      randomChar(passCharArr);
+      sessionStorage.setItem("password", passWordArr.join(''));
       console.log(passWordArr);
     }
   
@@ -161,7 +163,9 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(passWordArr);
+  generatePassword();
+
+  var password = sessionStorage.getItem('password');
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
