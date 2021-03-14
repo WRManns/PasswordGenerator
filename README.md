@@ -1,7 +1,7 @@
 ***Random Password Generator***
 
 User clicks on the Generate Password Button
-User is prompted to enter a password length between 8 and 100 characters
+User is prompted to enter a password length between 8 and 128 characters
 User is prompted to choose to include Lower Cased Characters
 User is prompted to choose to include Upper Cased Characters
 User is prompted to choose to include Numeric Characters

@@ -96,10 +96,10 @@ var passCharArr = []
 
 var passGen = function() {
 // Window prompts for password preferences
-var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 8-100"));
+var passLength = parseInt(prompt("Enter Desired Password Length: Choose between 8-128"));
   //Checking for password to be proper length
-  if (passLength< 8 || passLength > 100) {
-  window.alert("Password must contain between 8 and 100 characters.");
+  if (passLength< 8 || passLength > 128) {
+  window.alert("Password must contain between 8 and 128 characters.");
   return;
   };
 
