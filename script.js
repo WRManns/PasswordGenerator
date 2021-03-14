@@ -163,7 +163,6 @@ function generatePassword() {
         passWordArr.push(charCatch)
       }
       randomChar(passCharArr);
-      sessionStorage.setItem("password", passWordArr.join(''));
       console.log(passWordArr);
     }
     return passWordArr.join('')
