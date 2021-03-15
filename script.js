@@ -163,7 +163,7 @@ function generatePassword() {
         passWordArr.push(charCatch)
       }
       randomChar(passCharArr);
-      console.log(passWordArr);
+      
     }
     return passWordArr.join('')
   
